@@ -1,0 +1,39 @@
+{
+  "name": "homework-ng2",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "test": "echo \"Error: no test...\" && exit 1",
+    "lint": "echo \"Error: no lint...\" && exit 1",
+    "e2e": "echo \"Error: no e2e...\" && exit 1"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^8.0.1",
+    "@angular/common": "^8.0.1",
+    "@angular/compiler": "^8.0.1",
+    "@angular/core": "^8.0.1",
+    "@angular/forms": "^8.0.1",
+    "@angular/platform-browser": "^8.0.1",
+    "@angular/platform-browser-dynamic": "^8.0.1",
+    "@angular/router": "^8.0.1",
+    "core-js": "^2.4.1",
+    "jquery": "^3.2.1",
+    "rxjs": "^6.5.2",
+    "tslib": "^1.9.0",
+    "uikit": "^3.0.0-beta.27",
+    "zone.js": "~0.9.1",
+    "rxjs-compat": "^6.0.0-rc.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "~0.800.0",
+    "@angular/cli": "^8.0.3",
+    "@angular/compiler-cli": "^8.0.1",
+    "@angular/language-service": "^8.0.1",
+    "codelyzer": "^5.0.1",
+    "typescript": "~3.4.5"
+  }
+}

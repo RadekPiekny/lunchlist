@@ -1,0 +1,12 @@
+<ul class="uk-list uk-list-divider uk-list-large">
+    <li @items *ngFor="let lunch of (lunchList$ | async);trackBy: trackByFn">
+        {{ lunch.name }}, {{ lunch.address }}
+        <span class="uk-float-right">
+            <a uk-icon="icon: heart;" title="Love it!" uk-tooltip="pos: left" (click)="upvoteLunch(lunch.id)"></a>
+            {{ lunch.upvotes }}
+        </span>
+    </li>
+</ul>
+<ng-template #loading>
+    Loading stuff...
+  </ng-template>
