@@ -1,0 +1,7 @@
+ul { 
+    position: relative;
+}
+li {
+    position: absolute;
+    transition: all 3s ease;
+}

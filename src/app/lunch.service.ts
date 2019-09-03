@@ -13,6 +13,7 @@ export interface ILunch {
   name: string;
   address: string;
   upvotes: number;
+  position?: number;
 }
 
 @Injectable()
@@ -62,7 +63,7 @@ export class LunchService {
           address: '',
           upvotes: 0
         });
-        this.sortByVotes(this.lunchStore);
+        this.sortByVotes(this.lunchStore);        
       })
     );
   }
@@ -82,10 +83,8 @@ export class LunchService {
   upvoteLunch(id: number): Observable<any> {
     return observableOf(null).pipe(delay(FAKE_API_LATENCY()),tap(() => {
       const lunchToUpvote = this.lunchStore.find(lunch => lunch.id === id);
-      console.log(this.lunchStore);
       if (lunchToUpvote) {
         lunchToUpvote.upvotes++;
-        this.sortByVotes(this.lunchStore);
       } else {
         throw new Error("Trying to upvote non-existing lunch!");
       };
@@ -96,6 +95,7 @@ export class LunchService {
     lunchList.sort((a, b) => {
       return a.upvotes-b.upvotes;
     })
+    lunchList.forEach((l,i)=>l.position=i);
   }
 
   resetUpvotes(): Observable<any> {

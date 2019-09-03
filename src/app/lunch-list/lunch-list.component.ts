@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import UIkit from 'uikit';
 import { LunchService, ILunch } from '../lunch.service';
 import { Observable } from 'rxjs';
@@ -12,6 +12,7 @@ import {
 @Component({
   selector: 'app-lunch-list',
   templateUrl: './lunch-list.component.html',
+  styleUrls: ['./lunch-list.component.css'],
   animations: [
     trigger('items', [
       transition(':enter', [
@@ -20,16 +21,36 @@ import {
           style({ transform: 'scale(1)', opacity: 1 }))  // final
       ])
     ])
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LunchListComponent implements OnInit {
 
   lunchList$ : Observable<ILunch[]>;
+  llist: ILunch[];
 
-  constructor(private lunchService: LunchService){}
+  constructor(private lunchService: LunchService, private cd: ChangeDetectorRef){}
 
   ngOnInit() {
     this.getLunchList();
+    this.lunchService.getLunchList().subscribe(data=>{
+      this.sortByVotes(data);
+      this.cd.detectChanges();
+    })
+  }
+
+  sortByVotes(lunchList: ILunch[]) {
+    lunchList.sort((a, b) => {
+      return a.upvotes-b.upvotes;
+    })
+    lunchList.forEach((l,i)=>{
+      l.position=i
+      this.cd.detectChanges();
+      setTimeout(() => {
+
+      }, 1);
+    });
+    this.llist = lunchList;
   }
 
   getLunchList(): void {
@@ -39,14 +60,26 @@ export class LunchListComponent implements OnInit {
   upvoteLunch(lunchId: number) {
     this.lunchService.upvoteLunch(lunchId).subscribe(() => {
       UIkit.notification('Lunch upvoted!', { status: 'success' });
+      this.sortByVotes(this.llist);
+      this.cd.detectChanges();
     }, error => {
       UIkit.notification('Failed to upvote lunch :-(', { status: 'danger' });
       console.error('failed to upvote lunch');
     })
+    
   }
 
   trackByFn(index: number, item: ILunch) {
-    return index; // or item.id
+    return item.id;
+  }
+
+  getLunchStyle(lunch: ILunch): Object {
+    let style: Object = { 'transform': 'translateY(' + lunch.position + 'rem)' }; 
+    return style;
+  }
+
+  getUlStyle(i: number) {
+    return { 'height': i * 100 + 'px'}
   }
 
 }
