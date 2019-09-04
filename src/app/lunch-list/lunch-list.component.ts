@@ -26,13 +26,11 @@ import {
 })
 export class LunchListComponent implements OnInit {
 
-  lunchList$ : Observable<ILunch[]>;
+  
   llist: ILunch[];
-
   constructor(private lunchService: LunchService, private cd: ChangeDetectorRef){}
 
   ngOnInit() {
-    this.getLunchList();
     this.lunchService.getLunchList().subscribe(data=>{
       this.sortByVotes(data);
       this.cd.detectChanges();
@@ -44,17 +42,13 @@ export class LunchListComponent implements OnInit {
       return a.upvotes-b.upvotes;
     })
     lunchList.forEach((l,i)=>{
-      l.position=i
-      this.cd.detectChanges();
       setTimeout(() => {
-
-      }, 1);
+        l.position=i;
+        this.cd.detectChanges();
+      });
     });
     this.llist = lunchList;
-  }
-
-  getLunchList(): void {
-    this.lunchList$ = this.lunchService.getLunchList();
+    
   }
 
   upvoteLunch(lunchId: number) {
@@ -74,7 +68,7 @@ export class LunchListComponent implements OnInit {
   }
 
   getLunchStyle(lunch: ILunch): Object {
-    let style: Object = { 'transform': 'translateY(' + lunch.position + 'rem)' }; 
+    let style: Object = { 'transform': 'translateY(calc(' + lunch.position + ' * var(--li-height) + ' + lunch.position + ' * var(--li-margin))' }; 
     return style;
   }
 

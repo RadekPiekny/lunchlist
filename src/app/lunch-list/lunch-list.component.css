@@ -1,7 +1,19 @@
 ul { 
     position: relative;
+    list-style: none;
+    padding: 1em;
+    margin: 1em;
+    --li-height: 1rem;
+    --li-margin: 1.5rem;
 }
 li {
     position: absolute;
-    transition: all 3s ease;
+    transition: all .3s ease;
+    width: calc(100% - 2em);
+    overflow: hidden;
+    height: calc(var(--li-height) + var(--li-margin));
+}
+li .love {
+    float: right;
+    margin: 0 0.5em;
 }

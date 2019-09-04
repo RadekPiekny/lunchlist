@@ -1,6 +1,4 @@
-<button uk-toggle="target: #add-lunch-modal" class="uk-button uk-button-small uk-button-primary uk-align-center uk-margin">
-  <span uk-icon="icon: plus; ratio: 0.7;"></span> Add new lunch option 
-</button>
+<button class="add" uk-toggle="target: #add-lunch-modal"><span uk-icon="plus"></span></button>
 
 <div id="add-lunch-modal" uk-modal>
   <div class="uk-modal-dialog uk-modal-body">
@@ -13,12 +11,27 @@
       Have a better idea?
     </p>
 
-    <input [(ngModel)]="lunchInput" class="uk-input uk-form-width-large" placeholder="Let's add a new place!" type="text" />
+    <input [(ngModel)]="lunchInput.name" class="uk-input uk-form-width-large" placeholder="Let's add a new place!" type="text" />
 
     <div class='uk-align-center'>
-      <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
       <button class="uk-button uk-button-primary uk-modal-close" type="button" (click)="onLunchAdd()">Save</button>
     </div>
 
   </div>
+  <agm-map [latitude]='latitude' [longitude]='longitude' [mapTypeId]='mapType' [zoom]="8" (mapClick)="mapClicked($event)">
+      <ng-container *ngIf="(lunchList$ | async) as lunchlist">
+        <agm-marker 
+        *ngFor="let lunch of lunchlist; let i = index"
+        (markerClick)="clickedMarker(lunch.name, i)"
+        [latitude]="lunch.lat"
+        [longitude]="lunch.lng"
+        [label]="lunch.name"
+        [markerDraggable]="false"
+        >
+        </agm-marker>
+        <agm-info-window>
+          <strong>InfoWindow content</strong>
+        </agm-info-window>
+      </ng-container>
+    </agm-map>
 </div>

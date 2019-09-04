@@ -13,6 +13,8 @@ export interface ILunch {
   name: string;
   address: string;
   upvotes: number;
+  lat: number,
+  lng: number,
   position?: number;
 }
 
@@ -24,19 +26,25 @@ export class LunchService {
       id: _ID++,
       name: 'Kebab2Go',
       address: 'Budějovická 1125/11, 140 00 Praha 4-Michle',
-      upvotes: 1
+      upvotes: 1,
+      lat: 50.055850,
+      lng: 14.453280
     },
     {
       id: _ID++,
       name: 'Sushi place',
       address: 'Budějovická 1667/64, 140 00 Praha 4-Michle',
-      upvotes: 3
+      upvotes: 3,
+      lat: 50.047364,
+      lng: 14.437487
     },
     {
       id: _ID++,
       name: 'Melisek Restaurant',
       address: 'Budějovická 32, 140 00 Praha 4',
-      upvotes: 0
+      upvotes: 1,
+      lat: 50.056016,
+      lng: 14.430191
     },
   ];
 
@@ -52,16 +60,18 @@ export class LunchService {
     );
   }
 
-  addLunch(name: string): Observable<any> {
+  addLunch(lunch: ILunch): Observable<any> {
     return observableOf(null).pipe
     (
       delay(FAKE_API_LATENCY()),
       tap(() => {
         this.lunchStore.push({
           id: _ID++,
-          name,
-          address: '',
-          upvotes: 0
+          name: lunch.name,
+          address: lunch.address,
+          upvotes: lunch.upvotes,
+          lat: lunch.lat,
+          lng: lunch.lng
         });
         this.sortByVotes(this.lunchStore);        
       })

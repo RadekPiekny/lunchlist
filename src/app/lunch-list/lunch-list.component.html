@@ -1,6 +1,12 @@
-<ul>
-    <li *ngFor="let lunch of llist" [ngStyle]="{ 'transform': 'translateY(' + lunch.position * 20 + 'px)'}">
+<ul [ngStyle]="{ 'height': llist.length * 100 + 'px'}">
+    <li *ngFor="let lunch of llist; trackBy:trackByFn" [ngStyle]="getLunchStyle(lunch)">
+        <span>
+            <a uk-icon="icon: file-edit;" title="Edit!" uk-tooltip="pos: top" (click)="upvoteLunch(lunch.id)"></a>
+        </span>
         {{ lunch.name }}, {{ lunch.address }}
-        <span class="uk-float-right" (click)="upvoteLunch(lunch.id)">{{ lunch.upvotes }}</span>
+        <span class="love">
+            <a uk-icon="icon: heart;" title="Love it!" uk-tooltip="pos: left" (click)="upvoteLunch(lunch.id)"></a>
+            {{ lunch.upvotes }}
+        </span>
     </li>
 </ul>
