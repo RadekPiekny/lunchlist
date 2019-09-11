@@ -17,3 +17,13 @@ li .love {
     float: right;
     margin: 0 0.5em;
 }
+.heart-rect {
+    transform-origin: 50% 50%;
+    transform: rotate(45deg);
+}
+.upvotes-count {
+    width: 2ch;
+     margin-left: 1ch; /* I suppose votes will not go over 99 */
+    display: inline-block;
+    text-align: right;
+}

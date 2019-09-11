@@ -16,9 +16,7 @@
     <div class='uk-align-center'>
       <button class="uk-button uk-button-primary uk-modal-close" type="button" (click)="onLunchAdd()">Save</button>
     </div>
-
-  </div>
-  <agm-map [latitude]='latitude' [longitude]='longitude' [mapTypeId]='mapType' [zoom]="8" (mapClick)="mapClicked($event)">
+    <agm-map [latitude]='latitude' [longitude]='longitude' [mapTypeId]='mapType' [zoom]="14" (mapClick)="mapClicked($event)">
       <ng-container *ngIf="(lunchList$ | async) as lunchlist">
         <agm-marker 
         *ngFor="let lunch of lunchlist; let i = index"
@@ -29,9 +27,19 @@
         [markerDraggable]="false"
         >
         </agm-marker>
+        <agm-marker 
+        (markerClick)="clickedMarker(lunch.name, i)"
+        [latitude]="lunchInput.lat"
+        [longitude]="lunchInput.lng"
+        [label]="lunchInput.name"
+        [markerDraggable]="false"
+        >
+        </agm-marker>
         <agm-info-window>
           <strong>InfoWindow content</strong>
         </agm-info-window>
       </ng-container>
     </agm-map>
+  </div>
+
 </div>

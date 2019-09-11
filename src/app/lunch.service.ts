@@ -1,7 +1,6 @@
 
-import {of as observableOf,  Observable } from 'rxjs';
-
-import { tap, delay } from 'rxjs/operators';
+import {of, Observable, Subject } from 'rxjs';
+import { tap, delay, repeatWhen } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 let _ID = 1;
@@ -20,7 +19,7 @@ export interface ILunch {
 
 @Injectable()
 export class LunchService {
-
+  lunchHttp = new Subject<boolean>();
   private lunchStore: ILunch[] = [
     {
       id: _ID++,
@@ -52,16 +51,14 @@ export class LunchService {
 
   getLunchList(): Observable<ILunch[]> {
     //const clone = JSON.parse(JSON.stringify(this.lunchStore)); //why? Cloning happened once
-    return observableOf(this.lunchStore).pipe(
+    return of(this.lunchStore).pipe(
       delay(FAKE_API_LATENCY()),
-      tap(() => {
-        this.sortByVotes(this.lunchStore);
-      })
+      repeatWhen(() => this.lunchHttp)
     );
   }
 
   addLunch(lunch: ILunch): Observable<any> {
-    return observableOf(null).pipe
+    return of(null).pipe
     (
       delay(FAKE_API_LATENCY()),
       tap(() => {
@@ -72,14 +69,13 @@ export class LunchService {
           upvotes: lunch.upvotes,
           lat: lunch.lat,
           lng: lunch.lng
-        });
-        this.sortByVotes(this.lunchStore);        
+        });       
       })
     );
   }
 
   removeLunch(id: number): Observable<any> {
-    return observableOf(null).pipe(delay(FAKE_API_LATENCY()),tap(() => {
+    return of(null).pipe(delay(FAKE_API_LATENCY()),tap(() => {
       const lunchToRemove = this.lunchStore.find(lunch => lunch.id === id);
       if (lunchToRemove) {
         this.lunchStore = this.lunchStore.filter(lunch => lunch.id !== id);
@@ -91,7 +87,7 @@ export class LunchService {
   }
 
   upvoteLunch(id: number): Observable<any> {
-    return observableOf(null).pipe(delay(FAKE_API_LATENCY()),tap(() => {
+    return of(null).pipe(delay(FAKE_API_LATENCY()),tap(() => {
       const lunchToUpvote = this.lunchStore.find(lunch => lunch.id === id);
       if (lunchToUpvote) {
         lunchToUpvote.upvotes++;
@@ -101,15 +97,8 @@ export class LunchService {
     }),);
   }
 
-  sortByVotes(lunchList: ILunch[]) {
-    lunchList.sort((a, b) => {
-      return a.upvotes-b.upvotes;
-    })
-    lunchList.forEach((l,i)=>l.position=i);
-  }
-
   resetUpvotes(): Observable<any> {
-    return observableOf(null).pipe(delay(FAKE_API_LATENCY()),tap(() => {
+    return of(null).pipe(delay(FAKE_API_LATENCY()),tap(() => {
       this.lunchStore = this.lunchStore.map(lunch => Object.assign({}, lunch, { upvotes: 0 }));
     }),);
   }

@@ -30,13 +30,17 @@ export class AddLunchComponent {
   }
 
   onLunchAdd() {
-    this.lunchService.addLunch(this.lunchInput).subscribe(() => {
-      this.lunchInput = null;
-      UIkit.notification('New lunch option added!', { status: 'success' });
-    }, error => {
-      UIkit.notification('Adding lunch option failed :-(', { status: 'danger' });
-      console.error('failed adding new lunch option', error);
-    });
+    this.lunchService.addLunch(this.lunchInput).subscribe(
+      () => {
+        this.lunchInput = null;
+        this.lunchService.lunchHttp.next(true); // I want to repeat http call and get new values
+        UIkit.notification('New lunch option added!', { status: 'success' });
+      },
+      error => {
+        UIkit.notification('Adding lunch option failed :-(', { status: 'danger' });
+        console.error('failed adding new lunch option', error);
+      }
+    );
   }
 
   getLunchList(): void {
