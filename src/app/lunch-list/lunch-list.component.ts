@@ -29,19 +29,28 @@ import * as _ from 'lodash';
       transition(':decrement', [animate('5s ease', style({ transform: 'scale(0.75)' }))]),
       transition(':increment', [
         group([
-          query('svg', animate('600ms ease-in', keyframes([
+          query('#heart svg', animate('600ms ease-in', keyframes([
             style({transform: 'scale(1)'}),
             style({transform: 'scale(1.25)'}),
             style({transform: 'scale(1)'})
           ]))),
-          query('path', animate('600ms ease-in', keyframes([
+          query('#heart svg path', animate('600ms ease-in', keyframes([
             style({fill: 'rgba(255,0,0,0)', stroke: '#000'}),
             style({fill: 'rgba(255,0,0,1)', stroke: 'rgba(255,0,0,1)'}),
             style({fill: 'rgba(255,0,0,0)', stroke: '#000'})
+          ]))),
+          query('#heartMaterial svg', animate('600ms ease-in', keyframes([
+            style({transform: 'scale(1)'}),
+            style({transform: 'scale(3)'})
+          ]))),
+          query('#heartMaterial svg path', animate('600ms ease-in', keyframes([
+            style({fill: 'rgba(255,0,0,0)', stroke: 'rgba(255,0,0,0)'}),
+            style({fill: 'rgba(255,0,0,0.2)', stroke: 'rgba(255,0,0,0.2)'}),
+            style({fill: 'rgba(255,0,0,0)', stroke: 'rgba(255,0,0,0)'})
           ])))
         ]),
       ])
-    ])
+    ]),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -49,7 +58,6 @@ export class LunchListComponent implements OnInit {
   test: number = 0;
   $list: Observable<ILunch[]> = this.lunchService.getLunchList();
   llist: ILunch[];
-  originalLunchList: ILunch[];
   constructor(private lunchService: LunchService, private cd: ChangeDetectorRef){}
 
   ngOnInit() {
@@ -82,7 +90,6 @@ export class LunchListComponent implements OnInit {
   upvoteLunch(lunchId: number) {
     this.lunchService.upvoteLunch(lunchId).subscribe(() => {
       //UIkit.notification('Lunch upvoted!', { status: 'success' }); me no like. I think it is better to have visual representation of user action close to where they actually click hence heart animation
-      this.originalLunchList = JSON.parse(JSON.stringify(this.llist));
       this.sortByVotes(this.llist);
       this.cd.detectChanges();
     }, error => {

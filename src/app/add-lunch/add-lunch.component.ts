@@ -3,6 +3,7 @@ import UIkit from 'uikit';
 
 import { LunchService, ILunch } from '../lunch.service';
 import { Observable } from 'rxjs';
+import { FormBuilder, FormGroup } from "@angular/forms";
 
 @Component({
   selector: 'app-add-lunch',
@@ -22,14 +23,25 @@ export class AddLunchComponent {
     lng: null,
     upvotes: 0,
   };
+  lunchForm: FormGroup;
 
-  constructor(private lunchService: LunchService) { }
+  constructor(private lunchService: LunchService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.lunchForm = this.fb.group({
+      name: '',
+      address: '',
+      lat: 0,
+      lng: 0,
+      upvotes: 0
+    })
+    this.lunchForm.valueChanges.subscribe(data => {
+      console.log(data);
+    });
     this.getLunchList();
   }
 
-  onLunchAdd() {
+  lunchAdd() {
     this.lunchService.addLunch(this.lunchInput).subscribe(
       () => {
         this.lunchInput = null;
@@ -48,8 +60,12 @@ export class AddLunchComponent {
   }
 
   mapClicked($event: any) {
-    this.lunchInput.lat = $event.coords.lat;
-    this.lunchInput.lng = $event.coords.lng;
+    this.lunchForm.patchValue({
+      lat: ($event.coords.lat)
+    });
+    this.lunchForm.patchValue({
+      lng: ($event.coords.lat)
+    });
   }
 
 }

@@ -6,7 +6,7 @@
             </span>
             {{ lunch.name }} <!--  , {{ lunch.address }} it is cleaner without it. I do not need address for such app since there is a map which is much more user friendly-->
             <span class="love" [@upvote]="lunch.upvotes">
-                <a class="wtf" uk-icon="icon: heart;" title="Love it!" uk-tooltip="pos: left" (click)="upvoteLunch(lunch.id)" ></a>
+                <a class="heart" id="heart" uk-icon="icon: heart;" title="Love it!" uk-tooltip="pos: left" (click)="upvoteLunch(lunch.id)" ><a uk-icon="icon: heart;" id="heartMaterial" class="heart-material"></a></a>
                 <span class="upvotes-count">{{ lunch.upvotes }}</span>
             </span>
         </li>

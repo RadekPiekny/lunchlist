@@ -1,0 +1,7 @@
+nav {
+    height: var(--nav-height);
+}
+main {
+    min-height: calc(100vh - var(--nav-height));
+    overflow: hidden;
+}

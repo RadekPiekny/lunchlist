@@ -2,24 +2,28 @@ ul {
     position: relative;
     list-style: none;
     padding: 1em;
-    margin: 1em;
+    margin: 1em auto;
     --li-height: 1rem;
     --li-margin: 1.5rem;
+    max-width: 35em;
 }
 li {
     position: absolute;
     transition: all .3s ease;
     width: calc(100% - 2em);
-    overflow: hidden;
     height: calc(var(--li-height) + var(--li-margin));
 }
 li .love {
     float: right;
     margin: 0 0.5em;
 }
-.heart-rect {
-    transform-origin: 50% 50%;
-    transform: rotate(45deg);
+.heart {
+    position: relative;
+}
+.heart-material {
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 .upvotes-count {
     width: 2ch;
