@@ -3,15 +3,16 @@ ul {
     list-style: none;
     padding: 1em;
     margin: 1em auto;
-    --li-height: 1rem;
-    --li-margin: 1.5rem;
+    --li-height: 2em;
+    --li-margin: .5rem;
     max-width: 35em;
 }
 li {
     position: absolute;
     transition: all .3s ease;
     width: calc(100% - 2em);
-    height: calc(var(--li-height) + var(--li-margin));
+    height: var(--li-height);
+    margin-bottom: var(--li-margin)
 }
 li .love {
     float: right;
@@ -26,8 +27,18 @@ li .love {
     left: 0;
 }
 .upvotes-count {
-    width: 2ch;
+    width: 4ch;
      margin-left: 1ch; /* I suppose votes will not go over 99 */
     display: inline-block;
     text-align: right;
+    position: relative;
+}
+.upvote-ratio {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 5px;
+    border-radius: 30%;
+    background-color: rgba(0,255,0,0.3);
+    transition: width .3s ease;
 }

@@ -9,21 +9,20 @@ import {
   transition,
   keyframes,
   query,
-  group
+  group,
+  state
 } from '@angular/animations';
-import * as _ from 'lodash';
 
 @Component({
   selector: 'app-lunch-list',
   templateUrl: './lunch-list.component.html',
   styleUrls: ['./lunch-list.component.css'],
   animations: [
-    trigger('items', [
-      transition(':enter', [
-        style({ transform: 'scale(0.5)', opacity: 0.5 }),  // initial
-        animate('1s cubic-bezier(.8, -0.6, 0.2, 1.5)',
-          style({ transform: 'scale(1)', opacity: 1 }))  // final
-      ])
+    trigger('changePosition', [
+      state('normal', style({
+        transform: 'translateY(calc({{position}} * var(--li-height) + {{position}} * var(--li-margin))'
+      }),  {params: {position: 0}}),
+      transition('* => normal', [animate('0.5s 0.7s ease-in-out', )]),
     ]),
     trigger('upvote', [
       transition(':decrement', [animate('5s ease', style({ transform: 'scale(0.75)' }))]),
@@ -50,7 +49,7 @@ import * as _ from 'lodash';
           ])))
         ]),
       ])
-    ]),
+    ])
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -58,11 +57,13 @@ export class LunchListComponent implements OnInit {
   test: number = 0;
   $list: Observable<ILunch[]> = this.lunchService.getLunchList();
   llist: ILunch[];
+  maxUpvotes: number;
+  upvoteAnimationDone: boolean = false;
+  listItemPositionAnimation: string;
   constructor(private lunchService: LunchService, private cd: ChangeDetectorRef){}
 
   ngOnInit() {
     this.lunchService.getLunchList().subscribe(data=>{
-      console.log(data);
       this.sortByVotes(data);
       this.cd.detectChanges();
     })
@@ -76,14 +77,13 @@ export class LunchListComponent implements OnInit {
       }
       return b.position - a.position; // notice swapped position. Needed for stable sort. Initial sort without position values will be based on default behavior any other will use this stable algo.
     });
+    this.maxUpvotes = this.getMaxUpvotes(lunchList);   
     lunchList.reverse();
     lunchList.forEach((l,i)=>{
-      setTimeout(() => { // you probably do not like it but I do not know about any other way how to make async list swap possible.
-        l.position = i;  //I need to get element from stack and put it to queue as for osme reason CSS transitions gets reset when being in stack
-        this.cd.detectChanges();
-      });
+      l.position = i;
+      this.cd.detectChanges();
     });
-    
+    this.listItemPositionAnimation = 'normal';
     this.llist = lunchList;
   }
 
@@ -96,7 +96,10 @@ export class LunchListComponent implements OnInit {
       UIkit.notification('Failed to upvote lunch :-(', { status: 'danger' });
       console.error('failed to upvote lunch');
     })
-    
+  }
+
+  getMaxUpvotes(lunchList: ILunch[]): number {
+    return Math.max(...lunchList.map(l => l.upvotes));
   }
 
   trackByFn(index: number, item: ILunch) {
@@ -110,6 +113,10 @@ export class LunchListComponent implements OnInit {
 
   getUlStyle(i: number) {
     return { 'height': i * 100 + 'px'}
+  }
+
+  upvoteDone(e: Event) {
+    this.upvoteAnimationDone = true;
   }
 
 }

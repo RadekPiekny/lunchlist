@@ -1,14 +1,20 @@
 <ng-container *ngIf="llist">
     <ul [ngStyle]="{ 'height': llist.length * 100 + 'px'}">
-        <li *ngFor="let lunch of llist; trackBy:trackByFn" [ngStyle]="getLunchStyle(lunch)">
+        <li *ngFor="let lunch of llist; trackBy:trackByFn" [@changePosition]="{value: listItemPositionAnimation, params: {position: lunch.position}}" >
+            
             <span>
                 <a uk-icon="icon: file-edit;" title="Edit!" uk-tooltip="pos: top" (click)="upvoteLunch(lunch.id)"></a>
             </span>
             {{ lunch.name }} <!--  , {{ lunch.address }} it is cleaner without it. I do not need address for such app since there is a map which is much more user friendly-->
-            <span class="love" [@upvote]="lunch.upvotes">
+            <span class="love" [@upvote]="lunch.upvotes" (@upvote.done)="upvoteDone($event)">
                 <a class="heart" id="heart" uk-icon="icon: heart;" title="Love it!" uk-tooltip="pos: left" (click)="upvoteLunch(lunch.id)" ><a uk-icon="icon: heart;" id="heartMaterial" class="heart-material"></a></a>
-                <span class="upvotes-count">{{ lunch.upvotes }}</span>
+                <span class="upvotes-count">
+                    <div class="upvote-ratio" [ngStyle]="{'width': (lunch.upvotes / maxUpvotes * 100) + '%'}"></div>
+                    {{ lunch.upvotes }}
+                </span>
+                
             </span>
+            
         </li>
     </ul>
 </ng-container>
