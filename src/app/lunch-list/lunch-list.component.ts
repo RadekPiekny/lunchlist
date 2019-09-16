@@ -61,12 +61,15 @@ import { tap } from 'rxjs/operators';
 export class LunchListComponent implements OnInit {
   test: number = 0;
   iLLhandmyself: ILunch[];
+  heartAnimate: number;
   $list: Observable<ILunch[]> = this.lunchService.getLunchList().pipe(
     tap(data => {
       this.maxUpvotes = this.getMaxUpvotes(data);
       data.forEach((d,i) => {
-        d.position = i;
-        this.cd.detectChanges();
+        setTimeout(() => {
+          d.position = {'transform': 'translateY(calc(' + i + ' * var(--li-height) + ' + i + ' * var(--li-margin))'};
+
+        });
       });
       this.listItemPositionAnimation = "normal";
     })
@@ -77,15 +80,15 @@ export class LunchListComponent implements OnInit {
   listItemPositionAnimation: string;
   constructor(private lunchService: LunchService, private cd: ChangeDetectorRef){}
 
-  ngOnInit() { 
+  ngOnInit() {
     this.$list.subscribe( data => {
       this.iLLhandmyself = data;
-      console.log(this.iLLhandmyself);
       this.cd.detectChanges();
     })
   }
 
   upvoteLunch(lunchId: number) {
+    this.heartAnimate = lunchId;
     this.lunchService.upvoteLunch(lunchId).subscribe(() => {
       this.lunchService.lunchHttp.next(true);
     }, error => {
@@ -113,6 +116,10 @@ export class LunchListComponent implements OnInit {
 
   upvoteDone(e: Event) {
     this.upvoteAnimationDone = true;
+  }
+
+  refresh() {
+    this.cd.detectChanges();
   }
 
 }

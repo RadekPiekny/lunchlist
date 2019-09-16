@@ -14,7 +14,7 @@ export interface ILunch {
   upvotes: number;
   lat: number,
   lng: number,
-  position?: number;
+  position?: Object;
 }
 
 @Injectable()

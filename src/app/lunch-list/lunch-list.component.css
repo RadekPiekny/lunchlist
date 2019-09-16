@@ -9,7 +9,7 @@ ul {
 }
 li {
     position: absolute;
-    transition: all .3s ease;
+    transition: all .9s ease;
     height: var(--li-height);
     margin-bottom: var(--li-margin);
     display: flex;
@@ -43,4 +43,15 @@ li .love {
     border-radius: 3px;
     background-color: rgba(0,255,0,1);
     transition: all .3s ease;
+}
+
+.heart-animate {
+    animation: heartAnimation 6000ms ease-in forwards;
+    background-color: red;
+}
+
+@keyframes heartAnimation {
+    0% {transform: scale(1)}
+    50% {transform: scale(1.25)}
+    100% {transform: scale(1)}
 }
