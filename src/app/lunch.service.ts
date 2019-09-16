@@ -1,6 +1,6 @@
 
 import {of, Observable, Subject } from 'rxjs';
-import { tap, delay, repeatWhen } from 'rxjs/operators';
+import { tap, delay, repeatWhen, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 let _ID = 1;
@@ -20,6 +20,8 @@ export interface ILunch {
 @Injectable()
 export class LunchService {
   lunchHttp = new Subject<boolean>();
+  previousList: ILunch[];
+  wtf: number = 0;
   private lunchStore: ILunch[] = [
     {
       id: _ID++,
@@ -50,8 +52,23 @@ export class LunchService {
   constructor() { }
 
   getLunchList(): Observable<ILunch[]> {
-    //const clone = JSON.parse(JSON.stringify(this.lunchStore)); //why? Cloning happened once
+    
     return of(this.lunchStore).pipe(
+      map(data => data.sort((a: ILunch, b: ILunch) => {
+        let upvotes = a.upvotes - b.upvotes;
+        if (upvotes !== 0) {
+          return upvotes;
+        }
+        if (this.previousList) {
+          let A_place: ILunch = this.previousList.find(pl => pl.id === a.id);
+          let B_place: ILunch = this.previousList.find(pl => pl.id === b.id);
+          let A_index: number = this.previousList.indexOf(A_place);
+          let B_index: number = this.previousList.indexOf(B_place);
+          return B_index - A_index;
+        }
+      })),
+      map(data => data.reverse()),
+      tap(data => this.previousList = JSON.parse(JSON.stringify(data))),
       delay(FAKE_API_LATENCY()),
       repeatWhen(() => this.lunchHttp)
     );

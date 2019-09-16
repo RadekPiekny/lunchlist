@@ -10,9 +10,14 @@ ul {
 li {
     position: absolute;
     transition: all .3s ease;
-    width: calc(100% - 2em);
     height: var(--li-height);
-    margin-bottom: var(--li-margin)
+    margin-bottom: var(--li-margin);
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+li .place {
+    flex: 1;
 }
 li .love {
     float: right;
@@ -27,18 +32,15 @@ li .love {
     left: 0;
 }
 .upvotes-count {
-    width: 4ch;
-     margin-left: 1ch; /* I suppose votes will not go over 99 */
-    display: inline-block;
-    text-align: right;
-    position: relative;
+    width: 5ch;
+    margin-left: 2ch; /* I suppose votes will not go over 99 */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }
 .upvote-ratio {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 5px;
-    border-radius: 30%;
-    background-color: rgba(0,255,0,0.3);
-    transition: width .3s ease;
+    height: 6px;
+    border-radius: 3px;
+    background-color: rgba(0,255,0,1);
+    transition: all .3s ease;
 }
