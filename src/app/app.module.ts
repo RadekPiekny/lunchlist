@@ -9,12 +9,14 @@ import { LunchListComponent } from './lunch-list/lunch-list.component';
 import { AddLunchComponent } from './add-lunch/add-lunch.component';
 
 import { AgmCoreModule } from '@agm/core';
+import { IconHeartComponent } from './components/icon-heart/icon-heart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LunchListComponent,
-    AddLunchComponent
+    AddLunchComponent,
+    IconHeartComponent
   ],
   imports: [
     BrowserModule,

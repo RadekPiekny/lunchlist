@@ -1,10 +1,10 @@
 ul { 
     position: relative;
     list-style: none;
-    padding: 1em;
+    padding: 1em 0;
     margin: 1em auto;
     --li-height: 2em;
-    --li-margin: .5rem;
+    --li-margin: 1rem;
     max-width: 35em;
 }
 li {
@@ -18,13 +18,14 @@ li {
 }
 li .place {
     flex: 1;
+    padding: 0.5em 1em;
 }
 li .love {
     float: right;
     margin: 0 0.5em;
 }
 .heart {
-    position: relative;
+    width: 2em;
 }
 .heart-material {
     position: absolute;
@@ -33,7 +34,7 @@ li .love {
 }
 .upvotes-count {
     width: 5ch;
-    margin-left: 2ch; /* I suppose votes will not go over 99 */
+    margin: 0 2ch; /* I suppose votes will not go over 99 */
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -46,12 +47,17 @@ li .love {
 }
 
 .heart-animate {
-    animation: heartAnimation 6000ms ease-in forwards;
-    background-color: red;
+    animation: heartAnimation 1600ms ease-in forwards;
 }
 
 @keyframes heartAnimation {
-    0% {transform: scale(1)}
-    50% {transform: scale(1.25)}
-    100% {transform: scale(1)}
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(2.25);
+    }
+    100% {
+        transform: scale(1);
+    }
 }

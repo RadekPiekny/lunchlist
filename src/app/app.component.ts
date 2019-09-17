@@ -8,4 +8,12 @@ import { LunchService } from './lunch.service'
   providers: [LunchService],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent { }
+export class AppComponent { 
+  darkMode: boolean;
+  getTheme(): string {
+    if (this.darkMode) {
+      return 'dark';
+    }
+    return 'light';
+  }
+}

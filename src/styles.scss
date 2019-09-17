@@ -1,13 +1,37 @@
     
 @import "../node_modules/uikit/src/scss/variables-theme.scss";
-
-$navbar-background: #1e87f0;
-$navbar-nav-item-color: #fff;
-$navbar-item-color: #fff;
-$logo-color: #fff;
-
 @import "../node_modules/uikit/src/scss/mixins-theme.scss";
 @import "../node_modules/uikit/src/scss/uikit-theme.scss";
+
 :root {
+    --Dark-Main-BG-Color: rgb(40,40,40);
+    --Dark-Nav-BG-Color: rgb(40,40,40);
+    --Dark-Nav-BG-Active: rgb(55,55,55);
+    --Dark-Font-Color: rgb(200,200,200);
+    --Dark-Icon-Stroke-Inactive: rgb(215,215,215);
+    --Dark-Icon-Stroke-Active: rgb(223, 14, 49);
+
+    --Light-Main-BG-Color: rgb(215,215,215);
+    --Light-Nav-BG-Color: rgb(0,191,255);
+    --Light-Nav-BG-Active: rgb(200,200,200);
+    --Light-Font-Color: rgb(40,40,40);
+    --Light-Icon-Stroke-Inactive: rgb(40,40,40);
+    --Light-Icon-Stroke-Active: rgb(197, 12, 21);
     --nav-height: 3em;
+}
+[data-theme="light"] {
+    --Main-BG-Color: var(--Light-Main-BG-Color);
+    --Nav-BG-Color: var(--Light-Nav-BG-Color);
+    --Nav-BG-Active: var(--Light-Nav-BG-Active);
+    --Font-Color: var(--Light-Font-Color);
+    --Icon-Stroke-Inactive: var(--Light-Icon-Stroke-Inactive);
+    --Icon-Stroke-Active: var(--Light-Icon-Stroke-Active);
+}
+[data-theme="dark"] {
+    --Main-BG-Color: var(--Dark-Main-BG-Color);
+    --Nav-BG-Color: var(--Dark-Nav-BG-Color);
+    --Nav-BG-Active: var(--Dark-Nav-BG-Active);
+    --Font-Color: var(--Dark-Font-Color);
+    --Icon-Stroke-Inactive: var(--Dark-Icon-Stroke-Inactive);
+    --Icon-Stroke-Active: var(--Dark-Icon-Stroke-Active);
 }

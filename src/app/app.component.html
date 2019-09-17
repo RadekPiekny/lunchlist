@@ -1,7 +1,9 @@
-<nav>
+<nav [attr.data-theme]="getTheme()">
     <a href="/">banzai</a>
+    <button (click)="darkMode = !darkMode">dark mode</button>
+    {{darkMode}}
 </nav>
-<main>
+<main [attr.data-theme]="getTheme()">
     <app-lunch-list></app-lunch-list>
     <app-add-lunch></app-add-lunch>
 </main>

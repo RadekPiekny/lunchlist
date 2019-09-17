@@ -1,7 +1,14 @@
 nav {
     height: var(--nav-height);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    background-color: var(--Nav-BG-Color);
+    color: var(--Font-Color);
+    transition: background-color .3s ease;
 }
 main {
     min-height: calc(100vh - var(--nav-height));
     overflow: hidden;
+    background-color: var(--Main-BG-Color);
+    color: var(--Font-Color);
+    transition: background-color .3s ease;
 }

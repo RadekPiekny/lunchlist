@@ -1,11 +1,9 @@
-
 <ul>
-    <li *ngFor="let lunch of iLLhandmyself; trackBy:trackByFn"  [ngStyle]="lunch.position">
+    <li *ngFor="let lunch of ($list | async); trackBy:trackByFn"  [ngStyle]="lunch.position">
         <span class="place">{{lunch.name}}</span>
-        <a class="heart" id="heart" uk-icon="icon: heart;" title="Love it!" uk-tooltip="pos: left" (click)="upvoteLunch(lunch.id)" [class.heart-animate]="heartAnimate == lunch.id"><a uk-icon="icon: heart;" id="heartMaterial" class="heart-material" ></a></a>
+        <icon-heart class="heart" [animate]="heartAnimate" (click)="upvoteLunch(lunch.id)"></icon-heart>
         <span class="upvotes-count">
             <div class="upvote-ratio" [ngStyle]="{'width': (lunch.upvotes / maxUpvotes * 100) + '%'}"></div>
         </span>
     </li>
 </ul>
-<button (click)="refresh()">refresh</button>
