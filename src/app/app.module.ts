@@ -10,13 +10,16 @@ import { AddLunchComponent } from './add-lunch/add-lunch.component';
 
 import { AgmCoreModule } from '@agm/core';
 import { IconHeartComponent } from './components/icon-heart/icon-heart.component';
+import { DarkModeComponent } from './components/dark-mode/dark-mode.component';
+import { GeneralService } from './services/general.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     LunchListComponent,
     AddLunchComponent,
-    IconHeartComponent
+    IconHeartComponent,
+    DarkModeComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,7 @@ import { IconHeartComponent } from './components/icon-heart/icon-heart.component
     BrowserAnimationsModule,
     AgmCoreModule.forRoot({ apiKey: 'AIzaSyCsl7gM45VQURbDTZDpPNbGv2Wxr-N8GHY'})
   ],
-  providers: [LunchService],
+  providers: [LunchService,GeneralService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

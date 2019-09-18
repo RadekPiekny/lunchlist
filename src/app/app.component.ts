@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { LunchService } from './lunch.service'
+import { GeneralService } from './services/general.service';
 
 @Component({
   selector: 'app-root',
@@ -9,11 +10,7 @@ import { LunchService } from './lunch.service'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent { 
-  darkMode: boolean;
-  getTheme(): string {
-    if (this.darkMode) {
-      return 'dark';
-    }
-    return 'light';
-  }
+
+  constructor(public generalService: GeneralService) {}
+
 }

@@ -1,0 +1,30 @@
+:host {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none;          /* Likely future */   
+}
+.container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-origin: 50% 150%;
+    transition: transform .6s ease;
+}
+.icon {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.sun {
+    top: 0;
+}
+.crescent-moon {
+    top: 200%;
+    transform: rotate(180deg);
+}

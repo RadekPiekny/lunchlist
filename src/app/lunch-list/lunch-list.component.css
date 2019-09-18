@@ -25,7 +25,7 @@ li .love {
     margin: 0 0.5em;
 }
 .heart {
-    width: 2em;
+    width: 1.7em;
 }
 .heart-material {
     position: absolute;
@@ -42,12 +42,38 @@ li .love {
 .upvote-ratio {
     height: 6px;
     border-radius: 3px;
-    background-color: rgba(0,255,0,1);
+    background-color: var(--BarChart-Bar-BG);
     transition: all .3s ease;
 }
 
 .heart-animate {
     animation: heartAnimation 1600ms ease-in forwards;
+}
+.add {
+    border: none;
+    border-radius: 50%;
+    width: 4em;
+    height: 4em;
+    position: fixed;
+    bottom: 2em;
+    right: 2em;
+    display: flex;
+    box-shadow: 0 3px 5px -1px var(--Elements-Shadow-Color), 0 6px 5px 0 var(--Elements-Shadow-Color), 0 1px 12px 0 var(--Elements-Shadow-Color);
+    cursor: pointer;
+    outline: none;
+    background-color: var(--Button-Fixed-BG);
+}
+.add svg {
+    margin: auto;
+}
+.add svg line {
+    stroke-width: 10;
+    stroke: var(--Button-Fixed-Color);
+    stroke-linecap: round;
+}
+.icon-plus {
+    width: 2.5em;
+    height: 2.5em;
 }
 
 @keyframes heartAnimation {

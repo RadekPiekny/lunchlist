@@ -4,19 +4,44 @@
 @import "../node_modules/uikit/src/scss/uikit-theme.scss";
 
 :root {
-    --Dark-Main-BG-Color: rgb(40,40,40);
-    --Dark-Nav-BG-Color: rgb(40,40,40);
+    --App-Color-Mono-1: rgb(18,18,255);
+    --App-Color-Mono-2: rgb(38,38,255);
+    --App-Color-Mono-3: rgb(57,57,255);
+    --App-Color-Mono-4: rgb(77,77,255);
+    --App-Color-Mono-5: rgb(97,97,255);
+    --App-Color-Mono-6: rgb(116,116,255);
+    --App-Color-Mono-7: rgb(136,136,255);
+    --App-Color-Mono-8: rgb(155,155,255);
+    --App-Color-Mono-9: rgb(175,175,255);
+    --App-Color-Mono-10: rgb(195,195,255);
+    --App-Color-Mono-11: rgb(214,214,255);
+    --App-Color-Mono-12: rgb(234,234,255);
+
+    --Dark-Main-BG-Color: rgb(32,32,32);
+    --Dark-Nav-BG-Color: rgb(51,51,51);
     --Dark-Nav-BG-Active: rgb(55,55,55);
     --Dark-Font-Color: rgb(200,200,200);
-    --Dark-Icon-Stroke-Inactive: rgb(215,215,215);
-    --Dark-Icon-Stroke-Active: rgb(223, 14, 49);
+    --Dark-Icon-Heart-Stroke-Inactive: rgb(215,215,215);
+    --Dark-Icon-Heart-Stroke-Active: rgb(255, 38, 38);
+    --Dark-Icon-Heart-Fill-Inactive: rgba(255, 136, 136,0);
+    --Dark-Icon-Heart-Fill-Active: rgba(255, 38, 38,1);
+    --Dark-Elements-Shadow-Color: rgba(0,0,0,1);
+    --Dark-Button-Fixed-BG: var(--Dark-Nav-BG-Color);
+    --Dark-Button-Fixed-Color: var(--App-Color-Mono-5);
+    --Dark-BarChart-Bar-BG: var(--App-Color-Mono-5);
 
-    --Light-Main-BG-Color: rgb(215,215,215);
-    --Light-Nav-BG-Color: rgb(0,191,255);
+    --Light-Main-BG-Color: rgb(225,225,225);
+    --Light-Nav-BG-Color: rgb(245,245,245);
     --Light-Nav-BG-Active: rgb(200,200,200);
     --Light-Font-Color: rgb(40,40,40);
-    --Light-Icon-Stroke-Inactive: rgb(40,40,40);
-    --Light-Icon-Stroke-Active: rgb(197, 12, 21);
+    --Light-Icon-Heart-Stroke-Inactive: rgb(40,40,40);
+    --Light-Icon-Heart-Stroke-Active: rgb(255, 38, 38);
+    --Light-Icon-Heart-Fill-Inactive: rgba(255, 136, 136,0);
+    --Light-Icon-Heart-Fill-Active: rgba(255, 38, 38,1);
+    --Light-Elements-Shadow-Color: rgba(0,0,0,0.23);
+    --Light-Button-Fixed-BG: var(--Light-Nav-BG-Color);
+    --Light-Button-Fixed-Color: var(--App-Color-Mono-1);
+    --Light-BarChart-Bar-BG: var(--App-Color-Mono-5);
     --nav-height: 3em;
 }
 [data-theme="light"] {
@@ -24,14 +49,27 @@
     --Nav-BG-Color: var(--Light-Nav-BG-Color);
     --Nav-BG-Active: var(--Light-Nav-BG-Active);
     --Font-Color: var(--Light-Font-Color);
-    --Icon-Stroke-Inactive: var(--Light-Icon-Stroke-Inactive);
-    --Icon-Stroke-Active: var(--Light-Icon-Stroke-Active);
+    --Icon-Heart-Stroke-Inactive: var(--Light-Icon-Heart-Stroke-Inactive);
+    --Icon-Heart-Stroke-Active: var(--Light-Icon-Heart-Stroke-Active);
+    --Icon-Heart-Fill-Active: var(--Light-Icon-Heart-Fill-Active);
+    --Icon-Heart-Fill-Inactive: var(--Light-Icon-Heart-Fill-Inactive);
+    --Elements-Shadow-Color: var(--Light-Elements-Shadow-Color);
+    --Button-Fixed-BG: var(--Light-Button-Fixed-BG);
+    --Button-Fixed-Color: var(--Light-Button-Fixed-Color);
+    --BarChart-Bar-BG: var(--Light-BarChart-Bar-BG);
 }
 [data-theme="dark"] {
     --Main-BG-Color: var(--Dark-Main-BG-Color);
     --Nav-BG-Color: var(--Dark-Nav-BG-Color);
     --Nav-BG-Active: var(--Dark-Nav-BG-Active);
     --Font-Color: var(--Dark-Font-Color);
-    --Icon-Stroke-Inactive: var(--Dark-Icon-Stroke-Inactive);
-    --Icon-Stroke-Active: var(--Dark-Icon-Stroke-Active);
+    --Icon-Heart-Stroke-Inactive: var(--Dark-Icon-Heart-Stroke-Inactive);
+    --Icon-Heart-Stroke-Active: var(--Dark-Icon-Heart-Stroke-Active);
+    --Icon-Heart-Fill-Active: var(--Dark-Icon-Heart-Fill-Active);
+    --Icon-Heart-Fill-Inactive: var(--Dark-Icon-Heart-Fill-Inactive);
+    --Elements-Shadow-Color: var(--Dark-Elements-Shadow-Color);
+    --Button-Fixed-BG: var(--Dark-Button-Fixed-BG);
+    --Button-Fixed-Color: var(--Dark-Button-Fixed-Color);
+    --BarChart-Bar-BG: var(--Dark-BarChart-Bar-BG);
 }
+

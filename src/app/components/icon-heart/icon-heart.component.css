@@ -6,7 +6,7 @@
     transition: transform .3s ease-in-out;
 }
 .heart path {
-    stroke: var(--Icon-Stroke-Inactive);
+    stroke: var(--Icon-Heart-Stroke-Inactive);
     stroke-width: 2;
     fill: transparent;
 }
@@ -17,19 +17,26 @@
     position: absolute;
     top: 0;
     left: 0;
-    opacity: 0;
 }
 .heart-mirror path {
-    stroke: var(--Icon-Stroke-Active);
+    stroke: none;
     stroke-width: 3;
-    fill: transparent;
 }
 .scale {
     animation: scale-up .6s ease-in-out;
 }
+.mirror-scale {
+    animation: mirror-scale-up .8s ease-in-out;
+}
+.filling {
+    animation: filling .6s ease-in-out;
+}
+.mirror-filling {
+    animation: mirror-filling .8s ease-in-out;
+}
 .mirror-active {
     transform: scale(3);
-    fill: var(--Icon-Stroke-Active);
+    fill: var(--Icon-Heart-Stroke-Active);
 }
 
 @keyframes scale-up {
@@ -43,14 +50,41 @@
         transform: scale(1);
     }
 }
-@keyframes edges {
+@keyframes mirror-scale-up {
     0% {
-        stroke: var(--Icon-Stroke-Inactive);
-    }
-    50% {
-        stroke: var(--Icon-Stroke-Active);
+        transform: scale(1);
     }
     100% {
-        stroke: var(--Icon-Stroke-Inactive);
+        transform: scale(2.5);
+    }
+}
+@keyframes mirror-filling {
+    0% {
+        fill: var(--Icon-Heart-Fill-Inactive);
+        opacity: 0.1;
+    }
+    50% {
+        stroke: var(--Icon-Heart-Stroke-Active);
+        fill: var(--Icon-Heart-Fill-Active);
+        opacity: 0.3;
+    }
+    100% {
+        stroke: var(--Icon-Heart-Stroke-Inactive);
+        fill: var(--Icon-Heart-Fill-Inactive);
+        opacity: 0;
+    }
+}
+@keyframes filling {
+    0% {
+        stroke: var(--Icon-Heart-Stroke-Inactive);
+        fill: var(--Icon-Heart-Fill-Inactive);
+    }
+    50% {
+        stroke: var(--Icon-Heart-Stroke-Active);
+        fill: var(--Icon-Heart-Fill-Active);
+    }
+    100% {
+        stroke: var(--Icon-Heart-Stroke-Inactive);
+        fill: var(--Icon-Heart-Fill-Inactive);
     }
 }

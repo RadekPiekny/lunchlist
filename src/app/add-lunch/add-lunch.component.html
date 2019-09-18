@@ -1,4 +1,4 @@
-<button class="add" uk-toggle="target: #add-lunch-modal"><span uk-icon="plus"></span></button>
+
 
 <div id="add-lunch-modal" uk-modal>
   <div class="uk-modal-dialog uk-modal-body">
@@ -6,41 +6,40 @@
     <button class="uk-modal-close-default" type="button" uk-close></button>
 
     <h2 class="uk-modal-title">Add lunch option</h2>
-
     <p>
       Have a better idea?
     </p>
-    <form [formGroup]="lunchForm" (ngSubmit)="lunchAdd()">
+    <form #myForm="ngForm" [formGroup]="lunchForm">
       <input class="uk-input uk-form-width-large" placeholder="Let's add a new place!" type="text" formControlName="name" />
       <input class="uk-input uk-form-width-large" placeholder="Let's add a new place!" type="text" formControlName="address" />
       <div class='uk-align-center'>
-        <button class="uk-button uk-button-primary uk-modal-close" type="submit" [disabled]="lunchForm.invalid">Save</button>
+        <button class="uk-button uk-button-primary uk-modal-close" [disabled]="!myForm.form.valid" (click)="lunchAdd()">Save</button>
       </div>
-      <agm-map [latitude]='latitude' [longitude]='longitude' [mapTypeId]='mapType' [zoom]="14" (mapClick)="mapClicked($event)">
+      <agm-map [styles]="generalService.darkMode ? mapStyle : ''" [latitude]='latitude' [longitude]='longitude' [mapTypeId]='mapType' [zoom]="14" (mapClick)="mapClicked($event)">
         <ng-container *ngIf="(lunchList$ | async) as lunchlist">
           <agm-marker 
           *ngFor="let lunch of lunchlist; let i = index"
-          (markerClick)="clickedMarker(lunch.name, i)"
+          (markerClick)="clickedMarker(lunch.name)"
           [latitude]="lunch.lat"
           [longitude]="lunch.lng"
           [label]="lunch.name"
-          [markerDraggable]="false"
-          >
+          [markerDraggable]="false">
           </agm-marker>
-          <agm-marker 
-          (markerClick)="clickedMarker(lunch.name, i)"
-          [latitude]="lunchInput.lat"
-          [longitude]="lunchInput.lng"
-          [label]="lunchInput.name"
-          [markerDraggable]="false"
-          >
-          </agm-marker>
-          <agm-info-window>
-            <strong>InfoWindow content</strong>
-          </agm-info-window>
         </ng-container>
+        <agm-marker 
+        (markerClick)="clickedMarker(lunch.name)"
+        [latitude]="lunchForm.value.lat"
+        [longitude]="lunchForm.value.lng"
+        [label]="lunchForm.value.name"
+        [markerDraggable]="false"
+        >
+        </agm-marker>
+        <agm-info-window>
+          <strong>InfoWindow content</strong>
+        </agm-info-window>
       </agm-map>
     </form>
+    
   </div>
 
 </div>

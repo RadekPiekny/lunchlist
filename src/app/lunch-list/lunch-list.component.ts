@@ -1,8 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import UIkit from 'uikit';
 import { LunchService, ILunch } from '../lunch.service';
-import { Observable, Subject } from 'rxjs';
-import { tap, finalize, map } from 'rxjs/operators';
+import { Observable, Subject, Subscription } from 'rxjs';
+import { tap, finalize, map, first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-lunch-list',
@@ -13,6 +13,7 @@ import { tap, finalize, map } from 'rxjs/operators';
 export class LunchListComponent implements OnInit {
   test: number = 0;
   heartAnimate = new Subject<number>();
+  upvoteSubsribtion: Subscription;
   $list: Observable<ILunch[]> = this.lunchService.getLunchList().pipe(
     tap(data => {
       this.maxUpvotes = this.getMaxUpvotes(data);
@@ -34,13 +35,21 @@ export class LunchListComponent implements OnInit {
   }
 
   upvoteLunch(lunchId: number) {
-    this.lunchService.upvoteLunch(lunchId).subscribe(() => {
-      this.heartAnimate.next(lunchId);
-      this.lunchService.lunchHttp.next(true);
-    }, error => {
-      UIkit.notification('Failed to upvote lunch :-(', { status: 'danger' });
-      console.error('failed to upvote lunch');
-    })
+    this.upvoteSubsribtion = this.lunchService.upvoteLunch(lunchId).pipe(
+      first(),
+      finalize(() => {
+        console.log("upvoted");
+        this.heartAnimate.next(lunchId);
+        this.lunchService.lunchHttp.next(true);
+        this.upvoteSubsribtion.unsubscribe();
+      })
+    ).subscribe(
+      null,
+      () => {
+        UIkit.notification('Failed to upvote lunch :-(', { status: 'danger' });
+        console.error('failed to upvote lunch');
+      }
+    );
   }
 
   getMaxUpvotes(lunchList: ILunch[]): number {

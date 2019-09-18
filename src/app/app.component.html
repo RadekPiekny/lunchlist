@@ -1,9 +1,11 @@
-<nav [attr.data-theme]="getTheme()">
+<nav [attr.data-theme]="generalService.darkMode? 'dark':'light'">
     <a href="/">banzai</a>
-    <button (click)="darkMode = !darkMode">dark mode</button>
-    {{darkMode}}
+    <div class="dark-mode">
+        <dark-mode  (_darkMode)="generalService.darkMode = $event"></dark-mode>
+    </div>
+    
 </nav>
-<main [attr.data-theme]="getTheme()">
+<main [attr.data-theme]="generalService.darkMode? 'dark':'light'">
     <app-lunch-list></app-lunch-list>
     <app-add-lunch></app-add-lunch>
 </main>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, ViewChild, ElementRef, EventEmitter, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -8,15 +8,16 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconHeartComponent implements OnInit {
-  @Input() animate: Observable<boolean>;
-  @ViewChild('justForReset',{static: true}) justForReset: ElementRef<SVGElement>;
+  @Input() animate: boolean;
+  @Output() animteDone: EventEmitter<boolean> = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
   }
 
-  removeClass() {
-    //this.animationPlay = false;
+  removeClass(e: AnimationEvent) {
+    console.log(e);
+    this.animteDone.emit(true);
   }
 
 }

@@ -1,6 +1,6 @@
-<svg #justForReset viewBox="0 0 100 100" class="heart heart-mirror">
-    <path d="M50 85 L15 50 A1 1, 0, 0 1, 45 20 L 50 25 L 55 20 A1 1, 0, 0 1, 85 50 Z"/>
+<svg viewBox="0 0 100 100" class="heart heart-mirror" [class.mirror-scale]="animate">
+    <path d="M50 85 L15 50 A1 1, 0, 0 1, 45 20 L 50 25 L 55 20 A1 1, 0, 0 1, 85 50 Z" [class.mirror-filling]="animate"/>
 </svg>
-<svg viewBox="0 0 100 100" class="heart" [class.scale]="animate | async" (animationend)="removeClass()">
-    <path d="M50 85 L15 50 A1 1, 0, 0 1, 45 20 L 50 25 L 55 20 A1 1, 0, 0 1, 85 50 Z"/>
+<svg viewBox="0 0 100 100" class="heart" [class.scale]="animate" (animationend)="removeClass($event)">
+    <path d="M50 85 L15 50 A1 1, 0, 0 1, 45 20 L 50 25 L 55 20 A1 1, 0, 0 1, 85 50 Z" [class.filling]="animate"/>
 </svg>
