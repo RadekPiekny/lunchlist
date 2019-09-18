@@ -19,7 +19,7 @@ import { GeneralService } from './services/general.service';
     LunchListComponent,
     AddLunchComponent,
     IconHeartComponent,
-    DarkModeComponent
+    DarkModeComponent,
   ],
   imports: [
     BrowserModule,

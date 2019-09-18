@@ -1,4 +1,3 @@
-    
 @import "../node_modules/uikit/src/scss/variables-theme.scss";
 @import "../node_modules/uikit/src/scss/mixins-theme.scss";
 @import "../node_modules/uikit/src/scss/uikit-theme.scss";
@@ -18,31 +17,39 @@
     --App-Color-Mono-11: rgb(214,214,255);
     --App-Color-Mono-12: rgb(234,234,255);
 
-    --Dark-Main-BG-Color: rgb(32,32,32);
-    --Dark-Nav-BG-Color: rgb(51,51,51);
-    --Dark-Nav-BG-Active: rgb(55,55,55);
+    --App-Color-Grey-1: rgb(18,18,18);
+    --App-Color-Grey-2: rgb(38,38,38);
+    --App-Color-Grey-3: rgb(57,57,57);
+    --App-Color-Grey-4: rgb(77,77,77);
+
+    --Dark-Main-BG-Color: var(--App-Color-Grey-2);
+    --Dark-Nav-BG-Color: var(--App-Color-Grey-3);
     --Dark-Font-Color: rgb(200,200,200);
     --Dark-Icon-Heart-Stroke-Inactive: rgb(215,215,215);
-    --Dark-Icon-Heart-Stroke-Active: rgb(255, 38, 38);
+    --Dark-Icon-Heart-Stroke-Active: var(--App-Color-Mono-7);
     --Dark-Icon-Heart-Fill-Inactive: rgba(255, 136, 136,0);
-    --Dark-Icon-Heart-Fill-Active: rgba(255, 38, 38,1);
+    --Dark-Icon-Heart-Fill-Active: var(--App-Color-Mono-7);
     --Dark-Elements-Shadow-Color: rgba(0,0,0,1);
-    --Dark-Button-Fixed-BG: var(--Dark-Nav-BG-Color);
-    --Dark-Button-Fixed-Color: var(--App-Color-Mono-5);
-    --Dark-BarChart-Bar-BG: var(--App-Color-Mono-5);
+    --Dark-Button-Fixed-BG: var(--App-Color-Mono-5);
+    --Dark-Button-Fixed-Color: var(--Dark-Nav-BG-Color);
+    --Dark-Button-small-BG: var(--App-Color-Grey-4);
+    --Dark-Button-small-Color: var(--App-Color-Mono-10);
+    --Dark-BarChart-Bar-BG: var(--App-Color-Mono-4);
 
     --Light-Main-BG-Color: rgb(225,225,225);
     --Light-Nav-BG-Color: rgb(245,245,245);
     --Light-Nav-BG-Active: rgb(200,200,200);
     --Light-Font-Color: rgb(40,40,40);
     --Light-Icon-Heart-Stroke-Inactive: rgb(40,40,40);
-    --Light-Icon-Heart-Stroke-Active: rgb(255, 38, 38);
+    --Light-Icon-Heart-Stroke-Active: var(--App-Color-Mono-7);
     --Light-Icon-Heart-Fill-Inactive: rgba(255, 136, 136,0);
-    --Light-Icon-Heart-Fill-Active: rgba(255, 38, 38,1);
+    --Light-Icon-Heart-Fill-Active: var(--App-Color-Mono-7);
     --Light-Elements-Shadow-Color: rgba(0,0,0,0.23);
-    --Light-Button-Fixed-BG: var(--Light-Nav-BG-Color);
-    --Light-Button-Fixed-Color: var(--App-Color-Mono-1);
-    --Light-BarChart-Bar-BG: var(--App-Color-Mono-5);
+    --Light-Button-Fixed-BG: var(--App-Color-Mono-5);
+    --Light-Button-Fixed-Color: var(--Light-Nav-BG-Color);
+    --Light-Button-small-BG: var(--Light-Nav-BG-Color);
+    --Light-Button-small-Color: var(--App-Color-Mono-4);
+    --Light-BarChart-Bar-BG: var(--App-Color-Mono-4);
     --nav-height: 3em;
 }
 [data-theme="light"] {
@@ -57,6 +64,8 @@
     --Elements-Shadow-Color: var(--Light-Elements-Shadow-Color);
     --Button-Fixed-BG: var(--Light-Button-Fixed-BG);
     --Button-Fixed-Color: var(--Light-Button-Fixed-Color);
+    --Button-small-BG: var(--Light-Button-small-BG);
+    --Button-small-Color: var(--Light-Button-small-Color);
     --BarChart-Bar-BG: var(--Light-BarChart-Bar-BG);
 }
 [data-theme="dark"] {
@@ -71,6 +80,32 @@
     --Elements-Shadow-Color: var(--Dark-Elements-Shadow-Color);
     --Button-Fixed-BG: var(--Dark-Button-Fixed-BG);
     --Button-Fixed-Color: var(--Dark-Button-Fixed-Color);
+    --Button-small-BG: var(--Dark-Button-small-BG);
+    --Button-small-Color: var(--Dark-Button-small-Color);
     --BarChart-Bar-BG: var(--Dark-BarChart-Bar-BG);
 }
-
+html, body {
+    font-family: 'Lato', sans-serif;
+}
+H1,H2,H3,H4,H5,H6 {
+    font-family: 'Arvo', serif;
+}
+button {
+    border: none;
+    display: flex;
+    box-shadow: 0 3px 5px -1px var(--Elements-Shadow-Color), 0 6px 5px 0 var(--Elements-Shadow-Color), 0 1px 12px 0 var(--Elements-Shadow-Color);
+    cursor: pointer;
+    outline: none;
+    background-color: var(--Button-Fixed-BG);
+}
+.button-small {
+    padding: .375em 0.6em;
+    background-color: var(--Button-small-BG);
+    border-radius: 5px;
+    color: var(--Button-small-Color);
+    font-size: 0.75rem;
+    box-shadow: 0 3px 2px -1px var(--Elements-Shadow-Color), 0 2px 2px 0 var(--Elements-Shadow-Color), 0 1px 6px 0 var(--Elements-Shadow-Color);
+}
+.button-small:hover{
+    background-color: var(--App-Color-Mono-10);
+}

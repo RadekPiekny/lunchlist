@@ -13,7 +13,10 @@ a {
     display: flex;
     grid-column: 2;
     align-items: center;
-    text-align: center;
+    justify-content: center;
+    font-size: 1.5em;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 .dark-mode {
     grid-column: 3;

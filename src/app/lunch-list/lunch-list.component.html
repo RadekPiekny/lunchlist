@@ -1,5 +1,6 @@
 <ul>
     <li *ngFor="let lunch of ($list | async); trackBy:trackByFn"  [ngStyle]="lunch.position">
+        <button class="button-small">edit</button>
         <span class="place">{{lunch.name}}</span>
         <icon-heart class="heart" [animate]="(heartAnimate | async) === lunch.id" (click)="upvoteLunch(lunch.id)" (animteDone)="heartAnimate.next(0)"></icon-heart>
         <span class="upvotes-count">

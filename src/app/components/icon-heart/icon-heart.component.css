@@ -17,6 +17,7 @@
     position: absolute;
     top: 0;
     left: 0;
+    opacity: 0.3;
 }
 .heart-mirror path {
     stroke: none;
@@ -26,13 +27,13 @@
     animation: scale-up .6s ease-in-out;
 }
 .mirror-scale {
-    animation: mirror-scale-up .8s ease-in-out;
+    animation: mirror-scale-up .5s ease-in-out;
 }
 .filling {
     animation: filling .6s ease-in-out;
 }
 .mirror-filling {
-    animation: mirror-filling .8s ease-in-out;
+    animation: mirror-filling .5s ease-in-out;
 }
 .mirror-active {
     transform: scale(3);
