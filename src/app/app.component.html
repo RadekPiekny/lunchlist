@@ -1,10 +1,13 @@
 <nav [attr.data-theme]="generalService.darkMode? 'dark':'light'">
-    <a href="/">jumpshot lunch menu</a>
+    <!-- <a href="/">jumpshot lunch menu</a> -->
     <div class="dark-mode">
         <dark-mode  (_darkMode)="generalService.darkMode = $event"></dark-mode>
     </div>
 </nav>
 <main [attr.data-theme]="generalService.darkMode? 'dark':'light'">
     <app-lunch-list></app-lunch-list>
-    <app-add-lunch></app-add-lunch>
+
 </main>
+<app-modal [attr.data-theme]="generalService.darkMode? 'dark':'light'">
+    <app-add-lunch></app-add-lunch>
+</app-modal>

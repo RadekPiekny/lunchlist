@@ -1,0 +1,26 @@
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.overlay {
+    position: fixed;
+    opacity: 0.2;
+    top:0;
+    left:0;
+    bottom: 0;
+    right: 0;
+    background-color: var(--App-Modal-BG);
+}
+.modal-body {
+    margin: auto;
+    padding: 2em;
+    background-color: red;
+    z-index: 1;
+}

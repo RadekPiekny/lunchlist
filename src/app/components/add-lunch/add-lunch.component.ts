@@ -1,10 +1,10 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import UIkit from 'uikit';
 
-import { LunchService, ILunch } from '../lunch.service';
+import { LunchService, ILunch } from '../../lunch.service';
 import { Observable } from 'rxjs';
 import { FormBuilder, FormGroup, NgForm } from "@angular/forms";
-import { GeneralService } from '../services/general.service';
+import { GeneralService } from '../../services/general.service';
 
 @Component({
   selector: 'app-add-lunch',

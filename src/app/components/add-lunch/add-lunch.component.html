@@ -1,0 +1,34 @@
+<h2>Add lunch option</h2>
+<p>
+  Have a better idea?
+</p>
+<form #myForm="ngForm" [formGroup]="lunchForm">
+  <input placeholder="Let's add a new place!" type="text" formControlName="name" />
+  <input placeholder="Let's add a new place!" type="text" formControlName="address" />
+  <div>
+    <button [disabled]="!myForm.form.valid" (click)="lunchAdd()">Save</button>
+  </div>
+  <agm-map [styles]="generalService.darkMode ? mapStyle : ''" [latitude]='latitude' [longitude]='longitude' [mapTypeId]='mapType' [zoom]="14" (mapClick)="mapClicked($event)">
+    <ng-container *ngIf="(lunchList$ | async) as lunchlist">
+      <agm-marker 
+      *ngFor="let lunch of lunchlist; let i = index"
+      (markerClick)="clickedMarker(lunch.name)"
+      [latitude]="lunch.lat"
+      [longitude]="lunch.lng"
+      [label]="lunch.name"
+      [markerDraggable]="false">
+      </agm-marker>
+    </ng-container>
+    <agm-marker 
+    (markerClick)="clickedMarker(lunch.name)"
+    [latitude]="lunchForm.value.lat"
+    [longitude]="lunchForm.value.lng"
+    [label]="lunchForm.value.name"
+    [markerDraggable]="false"
+    >
+    </agm-marker>
+    <agm-info-window>
+      <strong>InfoWindow content</strong>
+    </agm-info-window>
+  </agm-map>
+</form>

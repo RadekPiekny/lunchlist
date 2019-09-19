@@ -21,36 +21,54 @@
     --App-Color-Grey-2: rgb(38,38,38);
     --App-Color-Grey-3: rgb(57,57,57);
     --App-Color-Grey-4: rgb(77,77,77);
+    --App-Color-Grey-5: rgb(97,97,97);
+    --App-Color-Grey-6: rgb(116,116,116);
+    --App-Color-Grey-7: rgb(136,136,136);
+    --App-Color-Grey-8: rgb(155,155,155);
+    --App-Color-Grey-9: rgb(175,175,175);
+    --App-Color-Grey-10: rgb(195,195,195);
+    --App-Color-Grey-11: rgb(214,214,214);
+    --App-Color-Grey-12: rgb(234,234,234);
+
+    --Dark-Modal-BG: var(--App-Color-Grey-12);
+    --Light-Modal-BG: var(--App-Color-Grey-1);
 
     --Dark-Main-BG-Color: var(--App-Color-Grey-2);
     --Dark-Nav-BG-Color: var(--App-Color-Grey-3);
-    --Dark-Font-Color: rgb(200,200,200);
-    --Dark-Icon-Heart-Stroke-Inactive: rgb(215,215,215);
+    --Dark-Font-Color: var(--App-Color-Grey-10);
+    --Dark-Icon-Heart-Stroke-Inactive: var(--App-Color-Grey-11);
     --Dark-Icon-Heart-Stroke-Active: var(--App-Color-Mono-7);
     --Dark-Icon-Heart-Fill-Inactive: rgba(255, 136, 136,0);
     --Dark-Icon-Heart-Fill-Active: var(--App-Color-Mono-7);
     --Dark-Elements-Shadow-Color: rgba(0,0,0,1);
-    --Dark-Button-Fixed-BG: var(--App-Color-Mono-5);
-    --Dark-Button-Fixed-Color: var(--Dark-Nav-BG-Color);
+    --Dark-Button-Fixed-BG: var(--App-Color-Mono-4);
+    --Dark-Button-Fixed-BG-Hover: var(--App-Color-Mono-5);
+    --Dark-Button-Fixed-Color: var(--Dark-Main-BG-Color);
     --Dark-Button-small-BG: var(--App-Color-Grey-4);
-    --Dark-Button-small-Color: var(--App-Color-Mono-10);
+    --Dark-Button-small-BG-Hover: var(--App-Color-Grey-5);
+    --Dark-Button-small-Color: var(--Dark-Font-Color);
     --Dark-BarChart-Bar-BG: var(--App-Color-Mono-4);
 
-    --Light-Main-BG-Color: rgb(225,225,225);
-    --Light-Nav-BG-Color: rgb(245,245,245);
-    --Light-Nav-BG-Active: rgb(200,200,200);
-    --Light-Font-Color: rgb(40,40,40);
-    --Light-Icon-Heart-Stroke-Inactive: rgb(40,40,40);
+    --Light-Main-BG-Color: var(--App-Color-Grey-11);
+    --Light-Nav-BG-Color: var(--App-Color-Grey-12);
+    --Light-Font-Color: var(--App-Color-Grey-2);
+    --Light-Icon-Heart-Stroke-Inactive: var(--App-Color-Grey-2);
     --Light-Icon-Heart-Stroke-Active: var(--App-Color-Mono-7);
     --Light-Icon-Heart-Fill-Inactive: rgba(255, 136, 136,0);
     --Light-Icon-Heart-Fill-Active: var(--App-Color-Mono-7);
     --Light-Elements-Shadow-Color: rgba(0,0,0,0.23);
     --Light-Button-Fixed-BG: var(--App-Color-Mono-5);
+    --Light-Button-Fixed-BG-Hover: var(--App-Color-Mono-6);
     --Light-Button-Fixed-Color: var(--Light-Nav-BG-Color);
     --Light-Button-small-BG: var(--Light-Nav-BG-Color);
-    --Light-Button-small-Color: var(--App-Color-Mono-4);
+    --Dark-Button-small-BG-Hover: var(--App-Color-Grey-5);
+    --Light-Button-small-Color: var(--Light-Font-Color);
     --Light-BarChart-Bar-BG: var(--App-Color-Mono-4);
     --nav-height: 3em;
+
+    --shadow-opacity-1: 0.20;
+    --shadow-opacity-2: 0.14;
+    --shadow-opacity-3: 0.12;
 }
 [data-theme="light"] {
     --Main-BG-Color: var(--Light-Main-BG-Color);
@@ -63,10 +81,13 @@
     --Icon-Heart-Fill-Inactive: var(--Light-Icon-Heart-Fill-Inactive);
     --Elements-Shadow-Color: var(--Light-Elements-Shadow-Color);
     --Button-Fixed-BG: var(--Light-Button-Fixed-BG);
+    --Button-Fixed-BG-Hover: var(--Light-Button-Fixed-BG-Hover);
     --Button-Fixed-Color: var(--Light-Button-Fixed-Color);
     --Button-small-BG: var(--Light-Button-small-BG);
+    --Button-small-BG-Hover: var(--Light-Button-small-BG-Hover);
     --Button-small-Color: var(--Light-Button-small-Color);
     --BarChart-Bar-BG: var(--Light-BarChart-Bar-BG);
+    --App-Modal-BG: var(--Light-Modal-BG);
 }
 [data-theme="dark"] {
     --Main-BG-Color: var(--Dark-Main-BG-Color);
@@ -79,10 +100,13 @@
     --Icon-Heart-Fill-Inactive: var(--Dark-Icon-Heart-Fill-Inactive);
     --Elements-Shadow-Color: var(--Dark-Elements-Shadow-Color);
     --Button-Fixed-BG: var(--Dark-Button-Fixed-BG);
+    --Button-Fixed-BG-Hover: var(--Dark-Button-Fixed-BG-Hover);
     --Button-Fixed-Color: var(--Dark-Button-Fixed-Color);
     --Button-small-BG: var(--Dark-Button-small-BG);
+    --Button-small-BG-Hover: var(--Dark-Button-small-BG-Hover);
     --Button-small-Color: var(--Dark-Button-small-Color);
     --BarChart-Bar-BG: var(--Dark-BarChart-Bar-BG);
+    --App-Modal-BG: var(--Dark-Modal-BG);
 }
 html, body {
     font-family: 'Lato', sans-serif;
@@ -94,8 +118,8 @@ button {
     border: none;
     display: flex;
     box-shadow: 0 3px 5px -1px var(--Elements-Shadow-Color), 0 6px 5px 0 var(--Elements-Shadow-Color), 0 1px 12px 0 var(--Elements-Shadow-Color);
-    cursor: pointer;
     outline: none;
+    cursor: pointer;
     background-color: var(--Button-Fixed-BG);
 }
 .button-small {
@@ -107,5 +131,56 @@ button {
     box-shadow: 0 3px 2px -1px var(--Elements-Shadow-Color), 0 2px 2px 0 var(--Elements-Shadow-Color), 0 1px 6px 0 var(--Elements-Shadow-Color);
 }
 .button-small:hover{
-    background-color: var(--App-Color-Mono-10);
+    background-color: var(--Button-small-BG-Hover);
+}
+.button-fixed {
+    border-radius: 50%;
+    width: 4em;
+    height: 4em;
+    position: fixed;
+    bottom: 2em;
+    right: 2em;
+    box-shadow: 0 3px 5px -1px var(--Elements-Shadow-Color), 0 6px 5px 0 var(--Elements-Shadow-Color), 0 1px 12px 0 var(--Elements-Shadow-Color);
+    background-color: var(--Button-Fixed-BG);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.button-fixed:hover {
+    background-color: var(--Button-Fixed-BG-Hover);
+}
+.x100 {
+    width: 1rem;
+    height: 1rem;
+}
+.x125 {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+.x150 {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+.x175 {
+    width: 1.75rem;
+    height: 1.75rem;
+}
+.x200 {
+    width: 2rem;
+    height: 2rem;
+}
+.shadow-2dp {
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, var(--shadow-opacity-2)),
+                0 3px 1px -2px rgba(0, 0, 0, var(--shadow-opacity-3)),
+                0 1px 5px 0 rgba(0, 0, 0, var(--shadow-opacity-2));
+  }
+.shadow-4dp {
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, var(--shadow-opacity-2)),
+                0 1px 10px 0 rgba(0, 0, 0, var(--shadow-opacity-3)),
+                0 2px 4px -1px rgba(0, 0, 0, var(--shadow-opacity-1));
+  }
+.shadow-24dp {
+    box-shadow: 0  9px 46px  8px rgba(0, 0, 0, var(--shadow-opacity-2)),
+                0 11px 15px -7px rgba(0, 0, 0, var(--shadow-opacity-3)),
+                0 24px 38px  3px rgba(0, 0, 0, var(--shadow-opacity-1));
 }

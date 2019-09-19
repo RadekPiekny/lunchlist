@@ -6,12 +6,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LunchListComponent } from './lunch-list/lunch-list.component';
-import { AddLunchComponent } from './add-lunch/add-lunch.component';
+import { AddLunchComponent } from './components/add-lunch/add-lunch.component';
 
 import { AgmCoreModule } from '@agm/core';
 import { IconHeartComponent } from './components/icon-heart/icon-heart.component';
 import { DarkModeComponent } from './components/dark-mode/dark-mode.component';
 import { GeneralService } from './services/general.service';
+import { IconPlusComponent } from './components/icon-plus/icon-plus.component';
+import { AppModalComponent } from './components/app-modal/app-modal.component';
+import { IconCloseComponent } from './components/icon-close/icon-close.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,9 @@ import { GeneralService } from './services/general.service';
     AddLunchComponent,
     IconHeartComponent,
     DarkModeComponent,
+    IconPlusComponent,
+    AppModalComponent,
+    IconCloseComponent,
   ],
   imports: [
     BrowserModule,
